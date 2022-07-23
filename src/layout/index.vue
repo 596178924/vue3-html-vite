@@ -1,0 +1,75 @@
+<template>
+	<div id="layout" ref="layoutRef" >
+		<!-- :class="layoutBindClass" -->
+		<Suspense :timeout="0">
+			<component :is="currentLayout" :key="currentLayoutType.value" />
+			<template #fallback>
+				<div>loading...</div>
+			</template>
+		</Suspense>
+	</div>
+</template>
+
+<script setup>
+import column from "./modules/column";
+import common from "./modules/common";
+import horizontal from "./modules/horizontal";
+import vertical from "./modules/vertical";
+import comprehensive from "./modules/comprehensive";
+
+// import { startLayout } from "./layout";
+import { useRouter } from "vue-router";
+import { filterRoutes } from "@/router/layoutRoutesFilter";
+
+import { useResizeObserver } from "@vueuse/core";
+import { useStoreWindowResize } from "@/store/window";
+
+import { useRoutesStore } from "@/store/routes";
+import { useLayoutStore } from "@/store/layout";
+// import { useThemeStore } from "@/store/theme";
+
+import { ref, computed } from "vue-demi";
+import { storeToRefs } from "pinia";
+
+// const { currentLayout, currentLayoutType } = startLayout();
+const StoreWindowResize = useStoreWindowResize();
+const { resizeChange } = StoreWindowResize;
+const RoutesStore = useRoutesStore();
+const { startRoutes } = RoutesStore;
+const LayoutStore = useLayoutStore();
+const { triggerCollapse } = LayoutStore;
+const { currentLayoutType } = storeToRefs(LayoutStore);
+const Router = useRouter();
+const Routes = Router.options.routes;
+const allRoutes = filterRoutes(Routes);
+// const ThemeStore = useThemeStore();
+// const { themeColor } = storeToRefs(ThemeStore);
+
+startRoutes(allRoutes);
+
+const layoutRef = ref(null);
+useResizeObserver(layoutRef, async (entries) => {
+	const entry = entries[0];
+	const { width, height } = entry.contentRect;
+	resizeChange(width, height);
+});
+
+// const elementPlusMessage = computed(
+// 	() => elementPluslocales[LanguageType.value]
+// );
+
+// const layoutBindClass = computed(() => `theme-${themeColor.value}`);
+const modules = {
+	column: column,
+	common: common,
+	horizontal: horizontal,
+	vertical: vertical,
+	comprehensive: comprehensive,
+};
+const currentLayout = computed(() => modules[currentLayoutType.value]);
+</script>
+<style lang="scss" scoped>
+#layout {
+	@apply text-sm h-screen;
+}
+</style>
