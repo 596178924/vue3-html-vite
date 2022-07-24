@@ -20,6 +20,8 @@ const allPlugins = [
 		targets: ['defaults', 'not IE 11']
 	})
 ];
+
+// build 压缩 .gz
 // const modeIsDev = import.meta.MODE === "development"
 // if (!modeIsDev) {
 // 	allPlugins.push(viteCompression())
