@@ -7,17 +7,33 @@ export const Modes = ['light', 'dark'];
 export const MenuItemTypes = ['default', 'card', 'arrow', 'horizontal', 'vertical'];
 // export const ThemeColors = ['primary', 'red', 'green', 'blue', 'yellow', 'pink', 'purple'];
 export const ThemeColors = ['primary', 'red', 'green', 'yellow'];
+export const TabTypes = [
+    {
+        value: "",
+        label: "default",
+    },
+    {
+        value: "card",
+        label: "card",
+    },
+    {
+        value: "border-card",
+        label: "border-card",
+    },
+];
 
 export const useThemeStore = defineStore('theme', {
     state: () => ({
         _themeMode: "light", // 光照模式 light, 暗黑模式dark
         _themeColor: "primary", // 主题 颜色
         _themeMenuItemType: "card",//菜单 风格
+        _themeTabType: 'card',// header 页签 风格
     }),
     getters: {
         themeMode: ({ _themeMode }) => _themeMode,
         themeColor: ({ _themeColor }) => _themeColor,
         themeMenuItemType: ({ _themeMenuItemType }) => _themeMenuItemType,
+        themeTabType: ({ _themeTabType }) => _themeTabType,
     },
     actions: {
         // 切换主题 模式
@@ -61,6 +77,7 @@ export const useThemeStore = defineStore('theme', {
                 console.error("updateThemeMenuItemType: --- error ---");
             }
         },
+        // 切换 主题颜色
         setThemeVarToHtml() {
             const currentThemeVars = ThemeVars[this._themeColor][this.themeMode]
             // console.log(currentThemeVars);
@@ -69,6 +86,18 @@ export const useThemeStore = defineStore('theme', {
                 Object.keys(currentThemeVars).map(_var => {
                     useCssVar(_var, ref(null)).value = currentThemeVars[_var];
                 })
+            }
+        },
+        updateThemeTabType(_type) {
+            const _isString = isString(_type);
+            const _isBlank = isBlank(_type);
+            const _isHad = TabTypes.map(item => item.value == _type);//includes(_type)
+            if (_isBlank) {
+                this._themeTabType = ''
+            } else if (_isString && _isHad) {
+                this._themeTabType = _type
+            } else {
+                console.error("updateThemeTabType: --- error ---");
             }
         }
     },

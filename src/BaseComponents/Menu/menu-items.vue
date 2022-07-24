@@ -41,9 +41,3 @@ function routeTitle(_route) {
 	return _route.meta && _route.meta.title ? _route.meta.title : _route.name;
 }
 </script>
-<style lang="scss" scoped>
-// :deep()
-.menu-icon {
-	font-size: 22px;
-}
-</style>

@@ -1,6 +1,7 @@
 <template>
 	<el-drawer
-		custom-class="menu-drawer"
+		:append-to-body="true"
+		custom-class="hxb-menu-drawer"
 		v-model="handler"
 		direction="ltr"
 		:with-header="false"

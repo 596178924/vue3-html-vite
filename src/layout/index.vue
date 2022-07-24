@@ -1,5 +1,5 @@
 <template>
-	<div id="layout" ref="layoutRef" >
+	<div id="layout" ref="layoutRef">
 		<!-- :class="layoutBindClass" -->
 		<Suspense :timeout="0">
 			<component :is="currentLayout" :key="currentLayoutType.value" />
@@ -18,7 +18,7 @@ import vertical from "./modules/vertical";
 import comprehensive from "./modules/comprehensive";
 
 // import { startLayout } from "./layout";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { filterRoutes } from "@/router/layoutRoutesFilter";
 
 import { useResizeObserver } from "@vueuse/core";
@@ -26,6 +26,8 @@ import { useStoreWindowResize } from "@/store/window";
 
 import { useRoutesStore } from "@/store/routes";
 import { useLayoutStore } from "@/store/layout";
+import { useRouteTabStore } from "@/store/routeTab";
+
 // import { useThemeStore } from "@/store/theme";
 
 import { ref, computed } from "vue-demi";
@@ -39,14 +41,17 @@ const { startRoutes } = RoutesStore;
 const LayoutStore = useLayoutStore();
 const { triggerCollapse } = LayoutStore;
 const { currentLayoutType } = storeToRefs(LayoutStore);
+const RouteTabStore = useRouteTabStore();
+const { startRouteTab } = RouteTabStore;
+const Route = useRoute();
 const Router = useRouter();
 const Routes = Router.options.routes;
 const allRoutes = filterRoutes(Routes);
 // const ThemeStore = useThemeStore();
 // const { themeColor } = storeToRefs(ThemeStore);
-
+console.log("filter_routes", allRoutes);
 startRoutes(allRoutes);
-
+startRouteTab(allRoutes, Route.fullPath);
 const layoutRef = ref(null);
 useResizeObserver(layoutRef, async (entries) => {
 	const entry = entries[0];

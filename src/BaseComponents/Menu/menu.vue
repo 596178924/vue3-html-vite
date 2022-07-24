@@ -1,5 +1,6 @@
 <template>
 	<el-menu
+		class="hxb-menu"
 		:class="themeMenuItemTypeClass"
 		:default-active="defaultIndex"
 		:collapse="collapse"
@@ -52,5 +53,19 @@ const themeMenuItemTypeClass = computed(
 	&.el-menu--vertical {
 		height: 100%;
 	}
+}
+.hxb-menu__card {
+	padding-top: 4px ;
+}
+.hxb-menu__default ,
+.hxb-menu__card ,
+.hxb-menu__arrow {
+	--el-menu-item-height: 61px;
+	--el-menu-sub-item-height: 61px;
+}
+.hxb-menu__vertical,
+.hxb-menu__horizontal {
+	--el-menu-item-height: 49px;
+	--el-menu-sub-item-height: 49px;
 }
 </style>

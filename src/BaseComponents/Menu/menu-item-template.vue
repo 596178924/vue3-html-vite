@@ -29,15 +29,15 @@ const props = defineProps({
 .el-menu--collapse .menu-item-title,
 .el-menu.horizontal-collapse-transition .menu-item-title,
 .el-menu.horizontal-collapse-transition
-	.el-sub-menu__title +
-	.el-menu--inline
+	.el-sub-menu__title
+	+ .el-menu--inline
 	.menu-icon,
 .el-menu.el-menu--collapse .el-sub-menu__title + .el-menu--inline .menu-icon {
 	@apply opacity-0;
 }
 
 // .el-menu .el-sub-menu__title +
-.el-menu--inline  {
+.el-menu--inline {
 	// background-color: red;
 	--el-menu-bg-color: red;
 }
@@ -47,20 +47,19 @@ const props = defineProps({
 .menu-item-title {
 	transition: opacity 0.1s;
 }
+:not(.hxb-menu__card) .menu-icon {
+	padding: 0 0 0 4px;
+}
+.hxb-menu__card .menu-icon {
+	padding: 0 4px 0 0;
+}
 
 // 菜单 缩放的时候 icon 加上边距
-// .el-menu--collapse .menu-icon,
+// :not(.hxb-menu__card).el-menu--collapse .menu-icon,
 // .el-menu.horizontal-collapse-transition
 // 	> .el-sub-menu
 // 	.el-sub-menu__title
 // 	.menu-icon {
-// 	margin: 0 4px;
+// 	margin-left: 4px;
 // }
-.el-menu--collapse .menu-icon,
-.el-menu.horizontal-collapse-transition
-	> .el-sub-menu
-	.el-sub-menu__title
-	.menu-icon {
-	margin: 0 4px;
-}
 </style>

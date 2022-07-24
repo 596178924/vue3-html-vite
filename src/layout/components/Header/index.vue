@@ -1,25 +1,18 @@
 <template>
-	<div class="base-header base-flex">
-		<CollapseHandlerBtn/>
-		<!-- <div class="base-flex"> -->
-			<ModeChange type="Button"></ModeChange>
-			<Avatar/>
-		<!-- </div> -->
+	<div class="py-2 h-16 flex items-center">
+		<CollapseHandlerBtn />
+		<ModeChange type="Button"></ModeChange>
+		<Avatar />
+		<SettingDrawer></SettingDrawer>
 	</div>
+	<Tabs></Tabs>
 </template>
 
 <script setup>
+import Tabs from "@/BaseComponents/TabsKeepalive/Tabs";
 import CollapseHandlerBtn from "@/components/Handler/CollapseBtn";
 import Avatar from "@/components/Avatar";
-import ModeChange from "@Base/Theme/ModeChange"
-
+import ModeChange from "@Base/Theme/ModeChange";
+import SettingDrawer from "@/BaseComponents/Theme/SettingDrawer";
 </script>
-<style lang="scss" scoped>
-.base-header {
-	@apply h-full;
-}
-.base-flex {
-	@apply flex  items-center;
-	// justify-between
-}
-</style>
+<style lang="scss" scoped></style>

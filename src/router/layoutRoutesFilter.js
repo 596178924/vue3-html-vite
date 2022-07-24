@@ -5,7 +5,7 @@ function _formatRoute(_route) {
 		path: _route.path,
 		name: _route.name,
 		meta: _route.meta,
-		children: null,
+		// children: null,
 	};
 	if (_route.children && _route.children.length > 0) {
 		obj.children = _route.children;
@@ -15,12 +15,14 @@ function _formatRoute(_route) {
 
 export function filterRoutes(_routes) {
 	const _filter_routes = _routes.filter(
-		(_route) => _route.meta && _route.meta.title
+		(_route) =>
+			_route.meta && _route.meta.title && !_route.meta.hidden
 	);
 	const _filter = _filter_routes.map((item) => {
 		const _item = _formatRoute(item);
 		if (_item.children && _item.children.length > 0) {
 			_item.children = filterRoutes(_item.children);
+			_item.meta.isParent = true
 		}
 		return _item;
 	});

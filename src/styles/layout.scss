@@ -24,6 +24,11 @@
 		@apply h-full;
 	}
 }
+.el-header {
+	--el-header-height: inherit;
+	// height: inherit;
+}
+
 .el-overlay {
 	background-color: transparent;
 	backdrop-filter: blur(4px);

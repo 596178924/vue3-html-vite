@@ -1,5 +1,6 @@
 
 import { defineStore } from "pinia"
+// import { useRouteTabStore } from "./routeTab"
 function _formatSubRoute(_route) {
 	return {
 		path: _route.path,
@@ -22,8 +23,11 @@ export const useRoutesStore = defineStore('routes', {
             this._routes = []
         },
         startRoutes(_routes) {
-            if (this._routes.length > 0) return;
-            this._routes = _routes
+            if (this._routes.length <= 0 && _routes.length > 0) {
+                this._routes = _routes
+                // const { startRouteTab } = useRouteTabStore()
+                // startRouteTab(_routes)
+            }
         }
     },
 })

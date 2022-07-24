@@ -1,5 +1,6 @@
 // 布局
 import Layout from '@/layout/index.vue';
+import subLayout from '@/layout/subLayout.vue';
 
 export default [
     {
@@ -10,7 +11,7 @@ export default [
         meta: {
             title: '首页',
             icon: 'ri-home-2-line',
-            breadcrumbHidden: true,
+            // breadcrumbHidden: true,
         },
         children: [
             {
@@ -56,7 +57,7 @@ export default [
         path: '/tree',
         name: 'Tree',
         component: Layout,
-        redirect: '/tree/tree-1/tree-1-1',
+        redirect: '/tree/tree-1',
         meta: {
             title: '树状图',
             icon: 'ri-node-tree',
@@ -65,15 +66,15 @@ export default [
             {
                 path: '/tree/tree-1',
                 name: 'tree',
-                component: () => import('@/views/tree/index.vue'),
-                redirect: '/tree/tree-1',
+                component: subLayout,
+                redirect: '/tree/tree-1-1',
                 meta: {
                     title: '树状',
                     icon: 'ri-node-tree',
                 },
                 children: [
                     {
-                        path: '/tree/tree-1/tree-1-1',
+                        path: '/tree/tree-1-1',
                         name: 'tree-1',
                         component: () => import('@/views/tree/tree-1/index.vue'),
                         meta: {
@@ -82,7 +83,7 @@ export default [
                         },
                     },
                     {
-                        path: '/tree/tree-1/tree-1-2',
+                        path: '/tree/tree-1-2',
                         name: 'tree-2',
                         component: () => import('@/views/tree/tree-2/index.vue'),
                         meta: {
@@ -102,6 +103,7 @@ export default [
         meta: {
             title: '错误页',
             icon: 'ri-error-warning-line',
+            // hidden: true,
         },
         children: [
             {
@@ -111,7 +113,6 @@ export default [
                 meta: {
                     title: '找不到资源',
                     icon: 'ri-error-warning-line',
-                    // hidden: true,
                 },
             },
         ]

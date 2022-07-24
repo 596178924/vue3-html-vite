@@ -20,7 +20,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.hxb-menu__card {
+.hxb-menu:not(.hxb-menu__arrow) {
 	--active-menu-item-bg-color: var(--el-color-primary-light-3, #213d5b);
 	.el-menu-item {
 		&.is-active {
@@ -29,5 +29,10 @@ const props = defineProps({
 		}
 	}
 }
-
+.hxb-menu__card {
+	.el-menu-item {
+		margin: 0 4px 4px ;
+		border-radius: 4px;
+	}
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<SubMenu>
 		<template #menu="{ currentSubChildren }">
-			<el-scrollbar height="100%" class="sidebar-menu__body">
+			<el-scrollbar height="100vh" class="sidebar-menu__body">
 				<Menu
 					:collapse="isCollapse"
 					:routes="currentSubChildren"

@@ -31,7 +31,7 @@ const { allRoutes } = storeToRefs(RoutesStore);
 const currentRouteSubPath = computed(() => getCurrentSubPath());
 function getCurrentSubPath() {
 	const _matched = Route.matched;
-	console.log(_matched);
+	// console.log(_matched);
 	return _matched.length > 0 ? _matched[0].path : "";
 }
 const currentSub = computed(() =>

@@ -4,7 +4,7 @@ import {
 	createWebHistory
 } from 'vue-router';
 import nprogress from '@/utils/nprogress'
-
+import { useRouteTabStore } from "@/store/routeTab";
 import routes from './routes.js';
 
 const router = createRouter({
@@ -19,6 +19,8 @@ const router = createRouter({
 });
 router.beforeEach(async (to, from, next) => {
 	nprogress.start()
+	const { addRouteTab } = useRouteTabStore()
+	addRouteTab(to)
 	next();
 });
 router.afterEach(() => {
