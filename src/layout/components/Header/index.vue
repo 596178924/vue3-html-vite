@@ -5,7 +5,7 @@
 		<Avatar />
 		<SettingDrawer></SettingDrawer>
 	</div>
-	<Tabs></Tabs>
+	<Tabs v-if="!tabsHidden"></Tabs>
 </template>
 
 <script setup>
@@ -14,5 +14,14 @@ import CollapseHandlerBtn from "@/components/Handler/CollapseBtn";
 import Avatar from "@/components/Avatar";
 import ModeChange from "@Base/Theme/ModeChange";
 import SettingDrawer from "@/BaseComponents/Theme/SettingDrawer";
+
+// import {  } from "vue-demi"
+
+const props = defineProps({
+	tabsHidden: {
+		type: Boolean,
+		default: false,
+	},
+});
 </script>
 <style lang="scss" scoped></style>

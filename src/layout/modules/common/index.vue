@@ -1,4 +1,5 @@
 <template>
+	<!-- 常规布局common -->
 	<el-container class="layout-container">
 		<el-header>
 			<Header></Header>
@@ -19,8 +20,8 @@ import Main from "@LC/Main";
 import Sidebar from "@LC/SideBar/common.sidebar.vue";
 import Header from "@LC/Header";
 
-import { sleep } from '@/utils/tools'
-await sleep()
+import { sleep } from "@/utils/tools";
+await sleep();
 
 import { useLayoutStore } from "@/store/layout";
 import { storeToRefs } from "pinia";

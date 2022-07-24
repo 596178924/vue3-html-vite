@@ -96,13 +96,13 @@ function handleRemove(path) {
 .hxb-tabs__default {
 	:deep() .el-tabs__nav-wrap::after {
 		content: none;
-		background-color: red;
 	}
 	:deep() .el-tabs__item {
-		padding: 0 10px 0 8px;
+		padding: 0;
+		background-color: var(--el-fill-color);
+		margin-right: 4px;
 	}
 	:deep() .el-icon {
-		// margin-left: 0;
 		margin-bottom: 2px;
 		svg {
 			margin-left: -8px;
@@ -111,8 +111,6 @@ function handleRemove(path) {
 	:deep() .el-tabs__active-bar {
 		pointer-events: none;
 		height: 100%;
-		// background-color: rbga(var(--el-color-primary-light-9), 0.3);
-		background: var(--el-color-primary-light-3);
 		opacity: 0.3;
 	}
 }

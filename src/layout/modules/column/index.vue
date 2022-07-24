@@ -1,4 +1,5 @@
 <template>
+	<!-- 分栏布局 -->
 	<el-container class="layout-container">
 		<el-aside :class="asideBindClass">
 			<Sidebar></Sidebar>
