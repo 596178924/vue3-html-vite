@@ -55,10 +55,10 @@ const themeMenuItemTypeClass = computed(
 	}
 }
 .hxb-menu__card {
-	padding-top: 4px ;
+	padding-top: 4px;
 }
-.hxb-menu__default ,
-.hxb-menu__card ,
+.hxb-menu__default,
+.hxb-menu__card,
 .hxb-menu__arrow {
 	--el-menu-item-height: 61px;
 	--el-menu-sub-item-height: 61px;
@@ -67,5 +67,24 @@ const themeMenuItemTypeClass = computed(
 .hxb-menu__horizontal {
 	--el-menu-item-height: 49px;
 	--el-menu-sub-item-height: 49px;
+}
+
+.hxb-menu:not(.hxb-menu__arrow) {
+	--active-menu-item-bg-color: var(--el-color-primary-light-3, #213d5b);
+	:deep() .el-menu-item.is-active {
+		background-color: var(--el-color-primary-light-7, #6fa6e0);
+		color: var(--el-color-primary, #213d5b);
+	}
+	:deep() .el-sub-menu.is-active .el-sub-menu__title {
+		// background-color: var(--el-color-primary-light-7, #6fa6e0);
+		color: var(--el-color-primary, #213d5b);
+	}
+}
+.hxb-menu__card {
+	:deep() .el-sub-menu.is-active .el-sub-menu__title,
+	:deep() .el-menu-item {
+		margin: 0 4px 4px;
+		border-radius: 4px;
+	}
 }
 </style>
