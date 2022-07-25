@@ -1,5 +1,5 @@
 <template>
-	<div class="py-2 h-16 flex items-center">
+	<div class=" h-12 flex items-center">
 		<CollapseHandlerBtn />
 		<ModeChange type="Button"></ModeChange>
 		<Avatar />

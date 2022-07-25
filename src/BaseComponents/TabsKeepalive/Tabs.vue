@@ -1,31 +1,59 @@
 <template>
-	<!-- <p>{{routeTabs}}</p> -->
-	<el-tabs
-		class="hxb-tabs"
-		:class="['hxb-tabs__' + tabBindClass]"
-		v-model="activeName"
-		:type="currentThemeTabType"
-		tab-position="top"
-		@tab-change="handleChange"
-		@tab-remove="handleRemove"
-	>
-		<el-tab-pane
-			:name="item.path"
-			v-for="item in routeTabs"
-			:key="item.name"
-			:closable="item.meta && !item.meta.noClosable"
+	<div class="hxb-tabs--menu">
+		<el-tabs
+			class="hxb-tabs"
+			:class="['hxb-tabs__' + tabBindClass]"
+			v-model="currentActiveRoute"
+			:type="currentThemeTabType"
+			tab-position="top"
+			@tab-change="handleChange"
+			@tab-remove="handleRemove"
 		>
-			<!-- item.meta.noClosable -->
-			<template #label>
-				<i class="hxb-tab-pane_icon" :class="item.meta.icon"></i>
-				<span class="hxb-tab-pane__title"> {{ item.meta.title }} </span>
+			<el-tab-pane
+				:name="item.path"
+				v-for="item in routeTabs"
+				:key="item.name"
+				:closable="item.meta && !item.meta.noClosable"
+			>
+				<!-- item.meta.noClosable -->
+				<template #label>
+					<i class="hxb-tab-pane_icon" :class="item.meta.icon"></i>
+					<span class="hxb-tab-pane__title">
+						{{ item.meta.title }}
+					</span>
+				</template>
+			</el-tab-pane>
+		</el-tabs>
+		<el-dropdown
+			max-height="500px"
+			@command="commandDropdown"
+			@visible-change="handlerIconKeep"
+		>
+			<ListSettings :keepAlive="iconKeepAlive"></ListSettings>
+			<template #dropdown>
+				<el-dropdown-menu>
+					<el-dropdown-item command="removeOtherRouteTabs">
+						关闭其他
+					</el-dropdown-item>
+					<el-dropdown-item command="removeAllRouteTabs">
+						关闭全部
+					</el-dropdown-item>
+					<el-dropdown-item command="removeRightRouteTabs">
+						关闭右边
+					</el-dropdown-item>
+					<el-dropdown-item command="removeLeftRouteTabs">
+						关闭左边
+					</el-dropdown-item>
+				</el-dropdown-menu>
 			</template>
-		</el-tab-pane>
-	</el-tabs>
+		</el-dropdown>
+	</div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue-demi";
+import ListSettings from "@/components/AnimationIcons/ListSettings";
+
+import { computed, ref } from "vue-demi";
 import { storeToRefs } from "pinia";
 import { useThemeStore } from "@/store/theme";
 import { useRouteTabStore } from "@/store/routeTab";
@@ -36,9 +64,15 @@ const ThemeStore = useThemeStore();
 const { updateThemeTabType } = ThemeStore;
 const { themeTabType } = storeToRefs(ThemeStore);
 const RouteTabStore = useRouteTabStore();
-const { removeRouteTab } = RouteTabStore;
-const { routeTabs } = storeToRefs(RouteTabStore);
-console.log(routeTabs.value);
+const {
+	removeRouteTab,
+	removeRightRouteTabs,
+	removeLeftRouteTabs,
+	removeOtherRouteTabs,
+	removeAllRouteTabs,
+} = RouteTabStore;
+const { routeTabs, keepAliveRoutes } = storeToRefs(RouteTabStore);
+// console.log(routeTabs.value);
 const Route = useRoute();
 const Router = useRouter();
 const currentThemeTabType = computed({
@@ -49,16 +83,47 @@ const tabBindClass = computed(() =>
 	isBlank(themeTabType.value) ? "default" : themeTabType.value
 );
 
-const activeName = computed({
+const currentActiveRoute = computed({
 	get: () => Route.fullPath,
 	set: (v) => console.log(v),
 });
-// const activeName = ref(Route.fullPath);
 function handleChange(path) {
 	Router.push(path);
 }
 function handleRemove(path) {
 	removeRouteTab(path);
+	Removed();
+}
+function Removed() {
+	if (keepAliveRoutes.value.length > 0) {
+		const lastPathIndex = keepAliveRoutes.value.length - 1;
+		const lastKeepsIndex = lastPathIndex < 0 ? 0 : lastPathIndex;
+		const lastPath = keepAliveRoutes.value[lastKeepsIndex];
+		console.log(lastPath);
+		handleChange(lastPath);
+	}
+}
+
+function commandDropdown(command) {
+	switch (command) {
+		case "removeRightRouteTabs":
+			removeRightRouteTabs(currentActiveRoute.value);
+			break;
+		case "removeLeftRouteTabs":
+			removeLeftRouteTabs(currentActiveRoute.value);
+			break;
+		case "removeOtherRouteTabs":
+			removeOtherRouteTabs(currentActiveRoute.value);
+			break;
+		case "removeAllRouteTabs":
+			removeAllRouteTabs();
+			Removed();
+			break;
+	}
+}
+const iconKeepAlive = ref(false);
+function handlerIconKeep(bool) {
+	iconKeepAlive.value = bool;
 }
 </script>
 <style lang="scss" scoped>
@@ -66,7 +131,8 @@ function handleRemove(path) {
 	--el-tabs-header-height: 30px;
 	--el-tabs-header-nav-line-height: 34px;
 	// --el-border-color-light: transparent;
-	// background-color: #a3c4a3;
+	overflow: hidden;
+	max-width: 100%;
 	:deep() .el-icon {
 		transition: unset;
 		&:hover {
@@ -80,7 +146,7 @@ function handleRemove(path) {
 		// background-color: #da8f8f;
 	}
 	:deep() .el-tabs__header {
-		margin: 0 0 10px;
+		margin: 8px 0;
 	}
 	:deep() .el-tabs__nav-next,
 	:deep() .el-tabs__nav-prev {
@@ -179,6 +245,25 @@ function handleRemove(path) {
 
 	:deep() .el-icon {
 		margin-bottom: 2px;
+	}
+}
+
+.hxb-tabs--menu {
+	max-width: 100%;
+	border-top: 1px solid var(--el-fill-color, #f2f2f2);
+	display: grid;
+	grid-template-columns: 1fr 30px;
+	align-content: center;
+	align-items: center;
+	// display: flex;
+	// align-items: center;
+	// align-content: center;
+	// user-select: none;
+	// .hxb-tabs {
+	// 	flex: 1;
+	// }
+	.hxb-icon {
+		margin: 0 auto;
 	}
 }
 </style>

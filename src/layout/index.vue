@@ -47,11 +47,12 @@ const Route = useRoute();
 const Router = useRouter();
 const Routes = Router.options.routes;
 const allRoutes = filterRoutes(Routes);
-// const ThemeStore = useThemeStore();
-// const { themeColor } = storeToRefs(ThemeStore);
+
 console.log("filter_routes", allRoutes);
+
 startRoutes(allRoutes);
 startRouteTab(allRoutes, Route.fullPath);
+
 const layoutRef = ref(null);
 useResizeObserver(layoutRef, async (entries) => {
 	const entry = entries[0];
@@ -59,11 +60,6 @@ useResizeObserver(layoutRef, async (entries) => {
 	resizeChange(width, height);
 });
 
-// const elementPlusMessage = computed(
-// 	() => elementPluslocales[LanguageType.value]
-// );
-
-// const layoutBindClass = computed(() => `theme-${themeColor.value}`);
 const modules = {
 	column: column,
 	common: common,
@@ -72,6 +68,7 @@ const modules = {
 	comprehensive: comprehensive,
 };
 const currentLayout = computed(() => modules[currentLayoutType.value]);
+
 </script>
 <style lang="scss" scoped>
 #layout {
