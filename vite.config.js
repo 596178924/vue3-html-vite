@@ -64,10 +64,14 @@ export default defineConfig({
 		},
 	},
 	build: {
+		minify: 'terser',
 		//指定输出路径
 		assetsDir: "./",
 		// 指定输出文件路径
 		outDir: "hxb-admin-vite-dist",
+		// 进行压缩计算
+		brotliSize: false,
+		sourcemap: false,
 		// 代码压缩配置
 		terserOptions: {
 			// 生产环境移除console
@@ -75,6 +79,7 @@ export default defineConfig({
 				drop_console: true,
 				drop_debugger: true,
 			},
+			keep_classnames:true,
 		},
 	},
 });
