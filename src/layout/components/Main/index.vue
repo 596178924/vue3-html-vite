@@ -6,7 +6,7 @@
 					mode="out-in"
 					:name="route.meta.transition || transitionDefaultName"
 				>
-					<keep-alive :max="maxKeepAliveRouteAmount" include>
+					<!-- <keep-alive :max="maxKeepAliveRouteAmount" include> -->
 						<Suspense :timeout="0">
 							<component
 								:is="Component"
@@ -16,7 +16,7 @@
 								<div>Loading...</div>
 							</template>
 						</Suspense>
-					</keep-alive>
+					<!-- </keep-alive> -->
 				</transition>
 			</template>
 		</router-view>

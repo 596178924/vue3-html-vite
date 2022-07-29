@@ -16,7 +16,6 @@ export const useRoutesStore = defineStore('routes', {
     getters: {
         allRoutes: ({ _routes }) => _routes,
         subRoutes: ({ _routes }) => _routes.map(item => _formatSubRoute(item)),
-        // currentSubChildren: ({ _routes }) => _routes.children
     },
     actions: {
         clearRoutes() {
@@ -25,8 +24,6 @@ export const useRoutesStore = defineStore('routes', {
         startRoutes(_routes) {
             if (this._routes.length <= 0 && _routes.length > 0) {
                 this._routes = _routes
-                // const { startRouteTab } = useRouteTabStore()
-                // startRouteTab(_routes)
             }
         }
     },

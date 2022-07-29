@@ -1,6 +1,8 @@
 <template>
 	<el-container class="layout-container">
-		<el-header> </el-header>
+		<el-header>
+			<Header></Header>
+		</el-header>
 		<el-scrollbar>
 			<el-main>
 				<router-view></router-view>
@@ -10,9 +12,9 @@
 </template>
 
 <script setup>
-
+import Header from "@LC/Header/horizontal.header.vue";
+import Main from "@LC/Main";
 import { sleep } from '@/utils/tools'
-await sleep()
-
+// await sleep()
 </script>
 <style lang="scss" scoped></style>

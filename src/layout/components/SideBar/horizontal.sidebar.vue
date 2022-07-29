@@ -3,7 +3,7 @@
 		<OnlyPhDrawer auto>
 			<Menu
 				:defaultIndex="currentRoutePath"
-				:routes="allRoutes"
+				:routes="routes"
 				:collapse="isCollapse"
 			>
 			</Menu>
@@ -16,17 +16,20 @@ import Menu from "@Base/Menu/menu";
 import OnlyPhDrawer from "@Base/MenuDrawer/onlyPhDrawer.vue";
 
 import { useRoute } from "vue-router";
-import { useRoutesStore } from "@/store/routes";
 import { useLayoutStore } from "@/store/layout";
 import { storeToRefs } from "pinia";
 import { computed } from "vue-demi";
 
-const LayoutStore = useLayoutStore();
-// const { triggerCollapse } = LayoutStore;
-const { isCollapse } = storeToRefs(LayoutStore);
-const RoutesStore = useRoutesStore();
-const { allRoutes } = storeToRefs(RoutesStore);
+const props = defineProps({
+	routes: {
+		type: Array,
+		required: true,
+	},
+});
 
+const LayoutStore = useLayoutStore();
+const { triggerCollapse } = LayoutStore;
+const { isCollapse } = storeToRefs(LayoutStore);
 const Route = useRoute();
 const currentRoutePath = computed(() => Route.fullPath);
 </script>

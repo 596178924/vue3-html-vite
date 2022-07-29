@@ -1,6 +1,7 @@
 <template>
 	<el-drawer
 		title="系统设置"
+		size="300px"
 		:append-to-body="true"
 		@close="emits('update:modelValue', false)"
 		v-model="modelValue"

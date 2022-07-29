@@ -32,7 +32,7 @@ import { storeToRefs } from "pinia";
 import { computed } from "vue-demi";
 
 const LayoutStore = useLayoutStore();
-const { triggerCollapse } = LayoutStore;
+// const { triggerCollapse } = LayoutStore;
 const { isCollapse } = storeToRefs(LayoutStore);
 const RoutesStore = useRoutesStore();
 const { allRoutes } = storeToRefs(RoutesStore);

@@ -3,7 +3,7 @@
 		class="hxb-menu"
 		:class="themeMenuItemTypeClass"
 		:default-active="defaultIndex"
-		:collapse="collapse"
+		:collapse="isCollapse"
 		:mode="mode"
 		:unique-opened="true"
 		router
@@ -43,9 +43,12 @@ const { screenWidth } = storeToRefs(useWindowResize);
 const ThemeStore = useThemeStore();
 // const { updateThemeMenuItemType } = ThemeStore;
 const { themeMenuItemType } = storeToRefs(ThemeStore);
+
 const themeMenuItemTypeClass = computed(
-	() => `hxb-menu__${themeMenuItemType.value}`
+	() => props.mode == 'horizontal' ? 'hxb-menu__horizontal' : `hxb-menu__${themeMenuItemType.value}`
 );
+const isCollapse = computed(()=> props.collapse)
+//  props.mode == "horizontal"? false:
 </script>
 <style lang="scss" scoped>
 .el-menu {

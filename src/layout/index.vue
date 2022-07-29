@@ -4,13 +4,15 @@
 		<Suspense :timeout="0">
 			<component :is="currentLayout" :key="currentLayoutType.value" />
 			<template #fallback>
-				<div>loading...</div>
+				<MainLoading></MainLoading>
 			</template>
 		</Suspense>
 	</div>
 </template>
 
 <script setup>
+import MainLoading from "./mainLoading.vue"
+
 import column from "./modules/column";
 import common from "./modules/common";
 import horizontal from "./modules/horizontal";

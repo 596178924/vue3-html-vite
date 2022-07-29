@@ -96,6 +96,48 @@ export default [
         ]
     },
     {
+        path: '/gsap',
+        name: "GSAP",
+        component: Layout,
+        redirect: '/gsap/tween-max',
+        meta: {
+            title: 'gsap动画',
+            icon: 'ri-css3-line',
+        },
+        children: [
+            {
+                path: '/gsap/tween-max',
+                name: "GSAP-tween-max",
+                meta: {
+                    title: 'tween-max',
+                    icon: 'ri-css3-line',
+                },
+                component:()=> import ("@/views/gsap/tweenMaxView/index.vue")
+            }
+        ]
+    },
+    {
+        path: '/loading',
+        name: "loading",
+        component: Layout,
+        redirect: '/loading/index',
+        meta: {
+            title: '等待加载',
+            icon: 'ri-loader-2-line',
+        },
+        children: [
+            {
+                path: '/loading/index',
+                name: "loading-index",
+                meta: {
+                    title: 'loading',
+                    icon: 'ri-loader-2-line',
+                },
+                component:()=> import ("@/views/loadingView/index.vue")
+            }
+        ]
+    },
+    {
         path: '/error',
         name: 'Error',
         component: Layout,

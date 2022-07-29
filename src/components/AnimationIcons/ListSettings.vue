@@ -1,5 +1,5 @@
 <template>
-	<div class="hxb-icon">
+	<div class="hxb-icon ml-2">
 		<ul class="icon-list-settings"
 			:class="{
 				'icon-keep-alive':keepAlive

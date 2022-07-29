@@ -9,14 +9,11 @@
 </template>
 
 <script setup>
-import Tabs from "@/BaseComponents/TabsKeepalive/Tabs";
+import Tabs from "@/BaseComponents/TabsKeepalive/index";
 import CollapseHandlerBtn from "@/components/Handler/CollapseBtn";
 import Avatar from "@/components/Avatar";
 import ModeChange from "@Base/Theme/ModeChange";
 import SettingDrawer from "@/BaseComponents/Theme/SettingDrawer";
-
-// import {  } from "vue-demi"
-
 const props = defineProps({
 	tabsHidden: {
 		type: Boolean,

@@ -14,7 +14,9 @@
 			</template>
 			<hxb-menu-items :menuRoutes="_routeItem.children"></hxb-menu-items>
 		</el-sub-menu>
-		<MenuItem v-else :route="_routeItem"></MenuItem>
+		<el-menu-item v-else :index="_routeItem.path">
+			<MenuItemTemplate :meta="_routeItem.meta"></MenuItemTemplate>
+		</el-menu-item>
 	</template>
 </template>
 
@@ -25,7 +27,6 @@ export default {
 </script>
 <script setup>
 import Fragment from "vue-fragment";
-import MenuItem from "./menu-item.vue";
 import MenuItemTemplate from "./menu-item-template.vue";
 
 const props = defineProps({
