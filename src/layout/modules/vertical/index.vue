@@ -1,7 +1,6 @@
 <template>
 	<el-container class="layout-container">
-		<el-aside >
-			<!-- :class="asideBindClass" -->
+		<el-aside :class="asideBindClass">
 			<Sidebar></Sidebar>
 		</el-aside>
 		<el-container>
@@ -22,17 +21,17 @@ import Sidebar from "@LC/SideBar/common.sidebar.vue";
 import Header from "@LC/Header";
 import Main from "@LC/Main";
 
+import { sleep } from "@/utils/tools";
+
 import { useLayoutStore } from "@/store/layout";
 import { storeToRefs } from "pinia";
 import { computed } from "vue-demi";
 
-import { sleep } from "@/utils/tools";
-await sleep();
-
 const LayoutStore = useLayoutStore();
-const { isCollapse } = storeToRefs(useLayoutStore);
-// const asideBindClass = computed(() => ({
-	// "sidebar-menu-is-collapse": isCollapse.value,
-// }));
+const { isCollapse } = storeToRefs(LayoutStore);
+const asideBindClass = computed(() => ({
+	"sidebar-menu-is-collapse": isCollapse.value,
+}));
+await sleep();
 </script>
 <style lang="scss" scoped></style>

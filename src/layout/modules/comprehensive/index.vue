@@ -10,7 +10,7 @@
 			</el-header>
 			<el-scrollbar>
 				<el-main>
-					<router-view></router-view>
+					<Main></Main>
 				</el-main>
 			</el-scrollbar>
 		</el-container>
@@ -21,6 +21,8 @@
 // import SubTabsMenu from "@Base/SubMenu/sub-tabs-menu.vue"
 import SideBar from "@LC/SideBar/horizontal.sidebar.vue";
 import Header from "@LC/Header/comprehensive.header.vue";
+import Main from "@LC/Main";
+
 
 import { computed, ref } from "vue-demi";
 import { sleep } from "@/utils/tools";
@@ -51,6 +53,6 @@ const currentSubRouteChild = computed(() => {
 	return currentSub.children.length > 0 ? currentSub.children : [];
 });
 
-// await sleep();
+await sleep();
 </script>
 <style lang="scss" scoped></style>

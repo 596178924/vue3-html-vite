@@ -5,7 +5,7 @@
 		</el-header>
 		<el-scrollbar>
 			<el-main>
-				<router-view></router-view>
+				<Main></Main>
 			</el-main>
 		</el-scrollbar>
 	</el-container>
@@ -15,6 +15,6 @@
 import Header from "@LC/Header/horizontal.header.vue";
 import Main from "@LC/Main";
 import { sleep } from '@/utils/tools'
-// await sleep()
+await sleep()
 </script>
 <style lang="scss" scoped></style>
