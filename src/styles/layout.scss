@@ -6,7 +6,7 @@
 	@apply md-min:w-auto md-max:w-0;
 }
 .el-container {
-	.el-aside{
+	.el-aside {
 		// @apply shadow-sm shadow-slate-400;
 		box-shadow: 0 1px 2px 0 #969696;
 	}
@@ -52,4 +52,21 @@
 // }
 // .layout-container {
 // 	backdrop-filter: blur(16px);
+// }
+
+// .v3-menus {
+// 	background-color: var(--el-color-primary-light-3, #fff) !important;
+// 	.v3-menus-item {
+// 		color: #fff;
+// 		&.v3-menus-available:hover,
+// 		&.v3-menus-active {
+// 			// color: var(--el-color-primary, #409eff);
+// 			color: #fff;
+// 			background-color: var(--el-color-primary-light-5, #ecf5ff);
+// 		}
+// 		.v3-menus-tip {
+// 			color: var(--el-color-white, #ecf5ff);;
+// 			// color: var(--el-color-primary-light-8, #ecf5ff);;
+// 		}
+// 	}
 // }

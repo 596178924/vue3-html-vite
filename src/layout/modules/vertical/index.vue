@@ -20,6 +20,7 @@
 import Sidebar from "@LC/SideBar/common.sidebar.vue";
 import Header from "@LC/Header";
 import Main from "@LC/Main";
+import config from "@/config"
 
 import { sleep } from "@/utils/tools";
 
@@ -32,6 +33,6 @@ const { isCollapse } = storeToRefs(LayoutStore);
 const asideBindClass = computed(() => ({
 	"sidebar-menu-is-collapse": isCollapse.value,
 }));
-await sleep();
+await sleep(config.layoutWiteTime || 2000)
 </script>
 <style lang="scss" scoped></style>

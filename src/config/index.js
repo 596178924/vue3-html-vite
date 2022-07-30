@@ -8,4 +8,5 @@ export default {
     tokenTableName: "hxb-admin-vite__token",//token名字
     transitionType: 'el-fade-in-linear',// 默认过场动画 el-fade-in el-fade-in-linear el-collapse-transition el-zoom-in-center el-zoom-in-top el-zoom-in-bottom
     maxKeepAliveRouteAmount: '10',// 最多可缓存数量
+    layoutWiteTime: 5000
 }

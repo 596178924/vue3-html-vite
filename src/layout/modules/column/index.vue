@@ -20,17 +20,19 @@ import Sidebar from "@LC/SideBar/column.sidebar.vue";
 import Header from "@LC/Header";
 import Main from "@LC/Main";
 
+import config from "@/config"
+
 import { useLayoutStore } from "@/store/layout";
 import { storeToRefs } from "pinia";
 import { computed } from "vue-demi";
 
 import { sleep } from '@/utils/tools'
-await sleep()
 
 const LayoutStore = useLayoutStore();
 const { isCollapse } = storeToRefs(LayoutStore);
 const asideBindClass = computed(() => ({
 	"sidebar-menu-is-collapse": isCollapse.value,
 }));
+await sleep(config.layoutWiteTime || 2000)
 </script>
 <style lang="scss" scoped></style>

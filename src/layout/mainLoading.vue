@@ -1,5 +1,5 @@
 <template>
-    <!--
+	<!--
         @Reference to 'https://csscoco.com/inspiration/#/./3d/3d-text-debut'
      -->
 	<div class="loading-view">
@@ -23,7 +23,10 @@ $duration: 2s;
 	width: 100%;
 	height: 100%;
 	display: flex;
-    background-color: var(--el-color-primary-dark-2,#000);
+	// background-color: var(--el-color-primary-dark-2,#000);
+	background-image: url("https://picsum.photos/1280");
+	background-size: cover;
+	background-repeat: no-repeat;
 	// background: #000;
 }
 .box {
@@ -41,7 +44,7 @@ span {
 	text-align: center;
 	transform-style: preserve-3d;
 	transform: rotateY(25deg);
-	animation: rotate $duration infinite ease-in-out;
+	animation: rotate $duration 1 ease-in-out;
 	color: black;
 
 	&:after,
