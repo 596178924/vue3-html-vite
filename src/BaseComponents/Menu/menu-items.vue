@@ -26,7 +26,6 @@ export default {
 };
 </script>
 <script setup>
-import Fragment from "vue-fragment";
 import MenuItemTemplate from "./menu-item-template.vue";
 
 const props = defineProps({
