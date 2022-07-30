@@ -28,6 +28,8 @@
 import ListSettings from "@/components/AnimationIcons/ListSettings";
 import { computed, ref } from "vue-demi";
 import { useRouteTabStore } from "@/store/routeTab";
+import { useRoute, useRouter } from "vue-router";
+
 const RouteTabStore = useRouteTabStore();
 const {
 	removeRightRouteTabs,
@@ -36,6 +38,10 @@ const {
 	removeAllRouteTabs,
 } = RouteTabStore;
 
+const Route = useRoute();
+const currentActiveRoute = computed({
+	get: () => Route.fullPath,
+});
 function commandDropdown(command) {
 	switch (command) {
 		case "removeRightRouteTabs":

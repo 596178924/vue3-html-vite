@@ -16,28 +16,63 @@
 		>
 			<!-- item.meta.noClosable -->
 			<template #label>
-				<i class="hxb-tab-pane__icon" :class="item.meta.icon"></i>
-				<span class="hxb-tab-pane__title">
-					{{ item.meta.title }}
-				</span>
+				<div
+					style="display: inline-flex; align-items: center"
+					@contextmenu.prevent="openContextmenu($event, item)"
+				>
+					<i class="hxb-tab-pane__icon" :class="item.meta.icon"></i>
+					<span class="hxb-tab-pane__title">
+						{{ item.meta.title }}
+					</span>
+				</div>
 			</template>
 		</el-tab-pane>
 	</el-tabs>
+	<ul
+		v-if="visible"
+		class="contextmenu el-dropdown-menu el-dropdown-menu--small"
+		:style="bindContextmenuStyle"
+		@click="closeContextmenu"
+	>
+		<li class="el-dropdown-menu__item" @click="removeOtherRouteTabs">
+			<!-- <vab-icon icon="close-line" /> -->
+			<span>关闭其他</span>
+		</li>
+		<li class="el-dropdown-menu__item" @click="removeLeftRouteTabs">
+			<!-- <vab-icon icon="arrow-left-line" /> -->
+			<span>关闭左侧</span>
+		</li>
+		<li class="el-dropdown-menu__item" @click="removeRightRouteTabs">
+			<!-- <vab-icon icon="arrow-right-line" /> -->
+			<span>关闭右侧</span>
+		</li>
+		<li class="el-dropdown-menu__item" @click="removeAllRouteTabs">
+			<!-- <vab-icon icon="close-line" /> -->
+			<span>关闭全部</span>
+		</li>
+	</ul>
 </template>
 
 <script setup>
-import { computed } from "vue-demi";
+import { computed, reactive, ref, watchEffect } from "vue-demi";
 import { storeToRefs } from "pinia";
 import { useThemeStore } from "@/store/theme";
 import { useRoute, useRouter } from "vue-router";
 import { isBlank } from "@/utils/validate";
 import { useRouteTabStore } from "@/store/routeTab";
+import { useMouse } from "@vueuse/core";
 
 const ThemeStore = useThemeStore();
 const { updateThemeTabType } = ThemeStore;
 const { themeTabType } = storeToRefs(ThemeStore);
 const RouteTabStore = useRouteTabStore();
-const { removeRouteTab } = RouteTabStore;
+const {
+	removeRouteTab,
+	removeRightRouteTabs,
+	removeLeftRouteTabs,
+	removeOtherRouteTabs,
+	removeAllRouteTabs,
+} = RouteTabStore;
 const { routeTabs, keepAliveRoutes } = storeToRefs(RouteTabStore);
 // console.log(routeTabs.value);
 const Route = useRoute();
@@ -50,10 +85,6 @@ const tabBindClass = computed(() =>
 	isBlank(themeTabType.value) ? "default" : themeTabType.value
 );
 
-// const currentActiveRoute = computed({
-// 	get: () => Route.fullPath,
-// 	set: (v) => console.log(v),
-// });
 function handleChange(path) {
 	Router.push(path);
 }
@@ -70,7 +101,41 @@ function Removed() {
 		handleChange(lastPath);
 	}
 }
+const visible = ref(false);
+const Mouse = useMouse();
+const contextmenuPosition = reactive({
+	left: 0,
+	top: 0,
+});
+const bindContextmenuStyle = computed(() => {
+	return {
+		left: contextmenuPosition.left + "px",
+		top: contextmenuPosition.top + "px",
+	};
+});
+function openContextmenu(event, tab) {
+	console.log(event, tab);
+	const { x, y } = Mouse;
+	contextmenuPosition.left = x.value;
+	contextmenuPosition.top = y.value;
+	visible.value = true;
+}
+function closeContextmenu() {
+	visible.value = false;
+}
+watchEffect(() => {
+	if (visible.value)
+		document.body.addEventListener("click", closeContextmenu);
+	else document.body.removeEventListener("click", closeContextmenu);
+});
 </script>
 <style lang="scss" scoped>
 @import "@/styles/hxbTabs.scss";
+
+.contextmenu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
 </style>
