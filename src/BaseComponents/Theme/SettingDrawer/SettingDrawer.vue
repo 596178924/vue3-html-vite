@@ -15,6 +15,18 @@
 					:value="item"
 				/>
 			</el-select>
+			<el-row :gutter="10" class="mt-4">
+				<el-col
+					:span="4"
+					v-for="layoutItem in layouts"
+					:key="layoutItem.type"
+					class="mb-4"
+				>
+					<el-button type="primary" circle @click="updateLayoutType(layoutItem.type)">
+						<i :class="layoutItem.icon" ></i>
+					</el-button>
+				</el-col>
+			</el-row>
 			<p>当前菜单类型: {{ themeMenuItemType }}</p>
 			<el-select v-model="currentThemeMenuItemType" placeholder="Select">
 				<el-option
@@ -71,9 +83,9 @@ const { updateLayoutType } = LayoutStore;
 const { currentLayoutType } = storeToRefs(LayoutStore);
 // 主题
 const ThemeStore = useThemeStore();
-const { updateThemeMenuItemType, updateThemeColor, updateThemeTabType } = ThemeStore;
-const { themeMenuItemType, themeColor,  themeTabType } =
-	storeToRefs(ThemeStore);
+const { updateThemeMenuItemType, updateThemeColor, updateThemeTabType } =
+	ThemeStore;
+const { themeMenuItemType, themeColor, themeTabType } = storeToRefs(ThemeStore);
 
 // ** 当前绑定的v-model
 // 当前布局类型：
@@ -96,6 +108,30 @@ const currentThemeTabType = computed({
 	get: () => themeTabType.value,
 	set: (v) => updateThemeTabType(v),
 });
+
+//  ['horizontal', 'vertical', 'column', 'comprehensive', 'common']
+const layouts = [
+	{
+		icon: "ri-layout-row-line",
+		type: "horizontal",
+	},
+	{
+		icon: "ri-layout-left-line",
+		type: "vertical",
+	},
+	{
+		icon: "ri-layout-column-line",
+		type: "column",
+	},
+	{
+		icon: "ri-layout-2-line",
+		type: "comprehensive",
+	},
+	{
+		icon: "ri-layout-5-line",
+		type: "common",
+	},
+];
 </script>
 <style lang="scss" scoped>
 .theme-color {
