@@ -6,7 +6,11 @@
 					mode="out-in"
 					:name="route.meta.transition || transitionDefaultName"
 				>
-					<!-- <keep-alive :max="maxKeepAliveRouteAmount" include> -->
+					<!-- <keep-alive
+						:max="maxKeepAliveRouteAmount"
+						:exclude="KeepAliveExclude"
+						:include="keepAliveRoutes"
+					> -->
 						<Suspense :timeout="0">
 							<component
 								:is="Component"
@@ -25,9 +29,16 @@
 
 <script setup>
 import config from "@/config";
+import { useRouteTabStore } from "@/store/routeTab";
+import { storeToRefs } from "pinia";
 const { maxKeepAliveRouteAmount, transitionType } = config;
 const transitionDefaultName = transitionType
 	? transitionType
 	: "el-fade-in-linear";
+const RouteTabStore = useRouteTabStore();
+const { keepAliveRoutes } = storeToRefs(RouteTabStore);
+const KeepAliveExclude = [
+	"/component/wangEditor"
+];
 </script>
 <style lang="scss" scoped></style>

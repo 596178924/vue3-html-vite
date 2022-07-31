@@ -35,38 +35,21 @@
 	backdrop-filter: blur(4px);
 	// color: transparent;
 }
-// .menu-drawer {
-//     --el-dialog-padding-primary: 0;
-// }
-// html {
-// 	background-color: rgb(255, 255, 255);
-// 	background-image: url('https://picsum.photos/1920/1020');
-// 	background-size: cover;
-// 	background-repeat: no-repeat;
-// }
-// .el-header ,
-// .el-aside {
-// 	.el-menu {
-// 		background-color: transparent;
+// html.dark {
+// 	.el-header,
+// 	.hxb-menu {
+// 		background-color: #333 !important;
 // 	}
 // }
-// .layout-container {
-// 	backdrop-filter: blur(16px);
+// html.light {
+// 	.el-header,
+// 	.hxb-menu {
+// 		background-color: #fff !important;
+// 	}
 // }
 
-// .v3-menus {
-// 	background-color: var(--el-color-primary-light-3, #fff) !important;
-// 	.v3-menus-item {
-// 		color: #fff;
-// 		&.v3-menus-available:hover,
-// 		&.v3-menus-active {
-// 			// color: var(--el-color-primary, #409eff);
-// 			color: #fff;
-// 			background-color: var(--el-color-primary-light-5, #ecf5ff);
-// 		}
-// 		.v3-menus-tip {
-// 			color: var(--el-color-white, #ecf5ff);;
-// 			// color: var(--el-color-primary-light-8, #ecf5ff);;
-// 		}
+// .layout-container {
+// 	.el-main {
+// 		backdrop-filter: blur(4px);
 // 	}
 // }

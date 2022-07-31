@@ -24,9 +24,6 @@ $duration: 2s;
 	height: 100%;
 	display: flex;
 	// background-color: var(--el-color-primary-dark-2,#000);
-	background-image: url("https://picsum.photos/1280");
-	background-size: cover;
-	background-repeat: no-repeat;
 	// background: #000;
 }
 .box {

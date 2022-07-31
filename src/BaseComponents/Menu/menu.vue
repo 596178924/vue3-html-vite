@@ -44,10 +44,12 @@ const ThemeStore = useThemeStore();
 // const { updateThemeMenuItemType } = ThemeStore;
 const { themeMenuItemType } = storeToRefs(ThemeStore);
 
-const themeMenuItemTypeClass = computed(
-	() => props.mode == 'horizontal' ? 'hxb-menu__horizontal' : `hxb-menu__${themeMenuItemType.value}`
+const themeMenuItemTypeClass = computed(() =>
+	props.mode == "horizontal"
+		? "hxb-menu__horizontal"
+		: `hxb-menu__${themeMenuItemType.value}`
 );
-const isCollapse = computed(()=> props.collapse)
+const isCollapse = computed(() => props.collapse);
 //  props.mode == "horizontal"? false:
 </script>
 <style lang="scss" scoped>
@@ -57,6 +59,7 @@ const isCollapse = computed(()=> props.collapse)
 		height: 100%;
 	}
 }
+
 .hxb-menu__card {
 	padding-top: 4px;
 }

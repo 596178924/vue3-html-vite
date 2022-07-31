@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import MainLoading from "./mainLoading.vue"
+import MainLoading from "./mainLoading.vue";
 
 import column from "./modules/column";
 import common from "./modules/common";
@@ -70,10 +70,12 @@ const modules = {
 	comprehensive: comprehensive,
 };
 const currentLayout = computed(() => modules[currentLayoutType.value]);
-
 </script>
 <style lang="scss" scoped>
 #layout {
 	@apply text-sm h-screen;
+	// background-image: url("https://picsum.photos/1280/750");
+	// background-size: cover;
+	// background-repeat: no-repeat;
 }
 </style>
