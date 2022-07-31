@@ -137,5 +137,6 @@ watchEffect(() => {
 	top: 0;
 	left: 0;
 	z-index: 10;
+	box-shadow: 0 0 5px #f2f2f2;
 }
 </style>
