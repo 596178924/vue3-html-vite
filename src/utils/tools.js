@@ -8,7 +8,7 @@ import { ElMessage } from "element-plus"
  * @param {Object} source
  * @returns {Object}
  */
- export function deepClone(source) {
+export function deepClone(source) {
 	if (!source && typeof source !== 'object') {
 		throw new Error('error arguments', 'deepClone')
 	}
@@ -23,6 +23,7 @@ import { ElMessage } from "element-plus"
 	return targetObj
 }
 /**
+ * 将url的数据转换成object
  * @param {string} url
  * @returns {Object}
  */
@@ -43,6 +44,27 @@ export function param2Obj(url) {
 	})
 	return obj
 }
+/**
+ * 把对象转换成get请求需要的url
+ * @param {Object} params
+ * @returns {String}
+ */
+export function paramsSerializer(params) {
+	let result = [];
+	for (let field in params) {
+		if (params[field] === undefined) {
+			result.push(`${field}=`);
+			continue;
+		}
+		if (Array.isArray(params[field])) {
+			result.push(params[field].map(item => `${field}=${item}`).join("&"));
+		} else {
+			result.push(`${field}=${params[field]}`);
+		}
+	}
+	return result.join("&");
+}
+
 export const countStatistics = (n) => {
 	//统计字数
 	/*	@统计规则：
@@ -62,7 +84,6 @@ export const countStatistics = (n) => {
 		imageLength = 0;
 	}
 	return imageLength + zh.length + (result.length - zh.length) / 2;
-	// console.log("格式化之后的内容：",this.spanInfo)
 }
 
 // export const debounce = (fn, delay = 300) => {
@@ -103,17 +124,23 @@ export const ArrayKeysToObject = function (Arr, Interface) {
 }
 
 export function copy(text) {
-	// console.log('copyText');
-	const textareaEl = document.createElement('textarea');
-	textareaEl.setAttribute('readonly', 'readonly'); // 防止手机上弹出软键盘
-	textareaEl.style.position = 'absolute';
-	textareaEl.style.left = '-100vw';
-	textareaEl.value = text;
-	document.body.appendChild(textareaEl);
-	textareaEl.select();
-	const success = document.execCommand('copy');
-	document.body.removeChild(textareaEl);
-	return success;
+	let res = false;
+	if (navigator.clipboard) {
+		console.log("能够复制");
+		navigator.clipboard.writeText(text)
+		res = true
+	} else {
+		const textareaEl = document.createElement("textarea");
+		textareaEl.setAttribute("readonly", "readonly"); // 防止手机上弹出软键盘
+		textareaEl.style.position = "absolute";
+		textareaEl.style.left = "-100vw";
+		textareaEl.value = text;
+		document.body.appendChild(textareaEl);
+		textareaEl.select();
+		res = document.execCommand("copy");
+		document.body.removeChild(textareaEl);
+	}
+	return res
 }
 
 export function PlusElCopy(text) {
@@ -190,30 +217,31 @@ export function exadd(arr) {
 	return ex(0)
 }
 // 判断对象是否有某项属性
-export function hasProperty(obj,key) {
-    return key in obj;
+export function hasProperty(obj, key) {
+	return key in obj;
 }
-export function getObjProperty(obj,key) {
-    return key in obj? obj[key] : void 0;
+// 取出对象中的key值
+export function getObjProperty(obj, key) {
+	return key in obj ? obj[key] : void 0;
 }
 
 export const sleep = (delay = 2000) =>
-    new Promise((resp) => setTimeout(() => resp(), delay));
+	new Promise((resp) => setTimeout(() => resp(), delay));
 
 export const _debounceFn = (fn, wait = 300, max = 3000) => debounce(
-    fn,
-    wait,
-    {
-        leading: true,
-        maxWait: max,
-        trailing: false,
-    }
+	fn,
+	wait,
+	{
+		leading: true,
+		maxWait: max,
+		trailing: false,
+	}
 )
-export const _throttleFn =  (fn, wait = 300) => throttle(
-    fn,
-    wait,
-    {
-        leading: true,
-        trailing: true,
-    }
+export const _throttleFn = (fn, wait = 300) => throttle(
+	fn,
+	wait,
+	{
+		leading: true,
+		trailing: true,
+	}
 )

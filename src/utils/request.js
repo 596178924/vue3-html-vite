@@ -1,28 +1,15 @@
 import axios from 'axios'
 import config from "@/config"
+import { paramsSerializer } from "./tools"
 const baseURL = `http://localhost:${config.serverPort}`
 
 const service = axios.create({
 	baseURL: baseURL,
 	timeout: 5000, // request timeout
-	headers:{
-		"Content-Type":"application/json",
+	headers: {
+		"Content-Type": "application/json",
 	},
-	paramsSerializer: function(params) {
-		let result = [];
-		for (let field in params) {
-			if (params[field] === undefined) {
-				result.push(`${field}=`);
-				continue;
-			}
-			if (Array.isArray(params[field])) {
-				result.push(params[field].map(item => `${field}=${item}`).join("&"));
-			} else {
-				result.push(`${field}=${params[field]}`);
-			}
-		}
-		return result.join("&");
-	}
+	paramsSerializer: paramsSerializer,
 })
 // request interceptor
 service.interceptors.request.use(
