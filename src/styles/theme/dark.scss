@@ -2,4 +2,8 @@ html[color-scheme="dark"],
 html[perfers-color-scheme="dark"],
 html.dark {
 	color-scheme: dark;
+	--w-e-textarea-bg-color: #333;
+	--w-e-textarea-color: #fff;
+	--w-e-toolbar-bg-color: #333;
+	--w-e-toolbar-color: #fff;
 }

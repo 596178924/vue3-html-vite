@@ -117,6 +117,27 @@ export default [
         ]
     },
     {
+        path: '/component',
+        name: "component",
+        component: Layout,
+        redirect: '/component/wangEditor',
+        meta: {
+            title: '组件',
+            icon: 'ri-test-tube-line',
+        },
+        children: [
+            {
+                path: '/component/wangEditor',
+                name: "component-wangEditor",
+                meta: {
+                    title: '富文本wangEditor',
+                    icon: "ri-image-edit-line",
+                },
+                component:()=> import ("@/views/component/wangEditor.vue")
+            }
+        ]
+    },
+    {
         path: '/gsap',
         name: "GSAP",
         component: Layout,
