@@ -96,6 +96,27 @@ export default [
         ]
     },
     {
+        path: '/js-tests',
+        name: "JsTests",
+        component: Layout,
+        redirect: '/jsTests/index',
+        meta: {
+            title: 'js测试',
+            icon: 'ri-test-tube-line',
+        },
+        children: [
+            {
+                path: '/jsTests/index',
+                name: "JsTests-index",
+                meta: {
+                    title: 'js测试',
+                    icon: "ri-test-tube-line",
+                },
+                component:()=> import ("@/views/jsTests/index.vue")
+            }
+        ]
+    },
+    {
         path: '/gsap',
         name: "GSAP",
         component: Layout,
