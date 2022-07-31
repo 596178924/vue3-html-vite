@@ -8,6 +8,9 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // import { configCompressPlugin } from './compress';
 import path from "path"
 // https://vitejs.dev/config/
+import config from "./src/config"
+
+
 const allPlugins = [
 	vue(),
 	ElementPlus({
@@ -47,9 +50,12 @@ export default defineConfig({
 	server: {
 		host: '0.0.0.0',
 		hmr: true,
-		port: 14140,// 端口号
+		port: config.serverPort,// 端口号
 		// open: false,// 自动在浏览器打开
 		// https: false,// 是否开启 https
+		proxy: {
+			'/api': `http://localhost:${config.serverPort}`
+		}
 	},
 	css: {
 		preprocessorOptions: {
@@ -79,7 +85,7 @@ export default defineConfig({
 				drop_console: true,
 				drop_debugger: true,
 			},
-			keep_classnames:true,
+			keep_classnames: true,
 		},
 	},
 });

@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseURL = ``
+import config from "@/config"
+const baseURL = `http://localhost:${config.serverPort}`
 
 const service = axios.create({
 	baseURL: baseURL,
