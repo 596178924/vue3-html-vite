@@ -84,7 +84,7 @@ const isCollapse = computed(()=> props.collapse)
 	}
 }
 .hxb-menu__card {
-	:deep() .el-sub-menu.is-active .el-sub-menu__title,
+	:deep() .el-sub-menu .el-sub-menu__title,
 	:deep() .el-menu-item {
 		margin: 0 4px 4px;
 		border-radius: 4px;
