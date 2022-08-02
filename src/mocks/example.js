@@ -1,24 +1,21 @@
 import Mock from "mockjs";
 
 export default {
-    getUsers: () => {
+    userSignIn: () => {
         return Mock.mock({
-            status: "200",
-            msg: "请求成功",
-            "data|3": [
-                {
-                    name: "@cname", // Mock.Random.cname(),
-                    age: "@integer(20,50)",
-                },
-            ],
-        });
+            status: 200,
+            message: 'success',
+            'data': {
+                'token|5':'@guid',
+            },
+        })
     },
     getUserInfor: () => Mock.mock({
         status: 200,
         message: 'success',
         'data|3': {
             name: '海星吧',
-            age: '@integer(18,50)'
+            age: '24'
         },
-    })
+    }),
 };

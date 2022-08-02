@@ -134,6 +134,15 @@ export default [
                     icon: "ri-image-edit-line",
                 },
                 component:()=> import ("@/views/component/wangEditor.vue")
+            },
+            {
+                path: '/component/scrollreveal',
+                name: "component-scrollreveal",
+                meta: {
+                    title: '滚动条动画',
+                    icon: "ri-image-edit-line",
+                },
+                component:()=> import ("@/views/component/scrollreveal.vue")
             }
         ]
     },
@@ -200,6 +209,15 @@ export default [
                 },
             },
         ]
+    },
+    {
+        path: '/sign/in',
+        name: 'sign-in',
+        component: ()=> import('@/views/sign/signIn/index.vue') ,
+        meta: {
+            title: '登录页',
+            hidden: true,
+        },
     },
     {
         path: '/:catchAll(.*)',

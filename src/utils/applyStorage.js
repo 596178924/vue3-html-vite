@@ -1,6 +1,6 @@
-import { storage } from '@/config'
+import config from '@/config'
 import cookie from 'js-cookie'
-
+const { storage } = config
 export function getStorage(name) {
     if (storage) {
         if ('localStorage' === storage) {

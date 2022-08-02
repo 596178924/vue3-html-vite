@@ -6,6 +6,9 @@ import {
 // import nprogress from '@/utils/nprogress'
 import nprogress from 'nprogress'
 import { useRouteTabStore } from "@/store/routeTab";
+// import { useUserStore } from "@/store/user";
+import { getToken } from "@/utils/token"
+
 import routes from './routes.js';
 
 const NProgress = nprogress.configure({
@@ -29,15 +32,37 @@ const router = createRouter({
 	}),
 });
 
+const whitePaths = [
+	'/sign/in',
+]
 
 router.beforeEach(async (to, from, next) => {
 	NProgress.start()
-	const { addRouteTab } = useRouteTabStore()
-	addRouteTab(to)
-	next();
+	const isLogin = getToken()   //登录时存的数据
+	const notWhite = !whitePaths.includes(to.fullPath)
+	if (!to.meta.hidden && notWhite) {
+		const { addRouteTab } = useRouteTabStore()
+		addRouteTab(to)
+	}
+	// 登录验证
+	if (notWhite) {  //路由页面是否有meta值
+		if (to.name !== 'sign-in' && !isLogin) {
+			next({
+				path: '/sign/in',
+				query: {
+					replace: to.path
+				}
+			})
+		} else {
+			next()
+		}
+	} else {
+		next()
+	}
 });
-router.afterEach(() => {
-	// document.title = `hxb-admin-vite`;
+
+router.afterEach((to) => {
+	document.title = `hxb-admin | ${to.meta.title}`;
 	NProgress.done()
 });
 

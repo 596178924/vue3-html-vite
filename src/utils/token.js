@@ -1,9 +1,10 @@
-import { tokenTableName } from '@/config'
+import config from '@/config'
 import {
     getStorage,
     setStorage,
     removeStorage,
 } from "./applyStorage"
+const { tokenTableName } = config
 /**
  * @description 获取token
  */
@@ -16,7 +17,7 @@ export function getToken() {
  * @param token
  */
 export function setToken(token) {
-    return setStorage(tokenTableName)
+    return setStorage(tokenTableName, token)
 }
 
 /**
