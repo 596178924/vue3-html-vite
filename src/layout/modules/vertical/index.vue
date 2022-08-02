@@ -7,11 +7,9 @@
 			<el-header>
 				<Header></Header>
 			</el-header>
-			<el-scrollbar>
-				<el-main>
-					<Main></Main>
-				</el-main>
-			</el-scrollbar>
+			<el-main>
+				<Main></Main>
+			</el-main>
 		</el-container>
 	</el-container>
 </template>
@@ -20,7 +18,7 @@
 import Sidebar from "@LC/SideBar/common.sidebar.vue";
 import Header from "@LC/Header";
 import Main from "@LC/Main";
-import config from "@/config"
+import config from "@/config";
 
 import { sleep } from "@/utils/tools";
 
@@ -33,6 +31,6 @@ const { isCollapse } = storeToRefs(LayoutStore);
 const asideBindClass = computed(() => ({
 	"sidebar-menu-is-collapse": isCollapse.value,
 }));
-await sleep(config.layoutWiteTime || 2000)
+await sleep(config.layoutWiteTime || 2000);
 </script>
 <style lang="scss" scoped></style>

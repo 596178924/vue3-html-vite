@@ -1,5 +1,5 @@
 <template>
-	<el-scrollbar>
+	<el-scrollbar id="main-scroll">
 		<router-view v-slot="{ Component, route }">
 			<template v-if="Component">
 				<transition

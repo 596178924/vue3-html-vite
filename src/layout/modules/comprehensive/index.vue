@@ -8,11 +8,9 @@
 			<el-header>
 				<Header :isPh="screenIsCollapse"></Header>
 			</el-header>
-			<el-scrollbar>
-				<el-main>
-					<Main></Main>
-				</el-main>
-			</el-scrollbar>
+			<el-main>
+				<Main></Main>
+			</el-main>
 		</el-container>
 	</el-container>
 </template>
@@ -23,7 +21,7 @@ import SideBar from "@LC/SideBar/horizontal.sidebar.vue";
 import Header from "@LC/Header/comprehensive.header.vue";
 import Main from "@LC/Main";
 
-import config from "@/config"
+import config from "@/config";
 
 import { computed, ref } from "vue-demi";
 import { sleep } from "@/utils/tools";
@@ -32,7 +30,6 @@ import { useLayoutStore } from "@/store/layout";
 import { useRoutesStore } from "@/store/routes";
 import { useStoreWindowResize } from "@/store/window";
 import { useRoute } from "vue-router";
-
 
 const Route = useRoute();
 const RoutesStore = useRoutesStore();
@@ -54,6 +51,6 @@ const currentSubRouteChild = computed(() => {
 	);
 	return currentSub.children.length > 0 ? currentSub.children : [];
 });
-await sleep(config.layoutWiteTime || 2000)
+await sleep(config.layoutWiteTime || 2000);
 </script>
 <style lang="scss" scoped></style>
