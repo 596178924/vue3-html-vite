@@ -35,6 +35,14 @@
 	backdrop-filter: blur(4px);
 	// color: transparent;
 }
+
+#app {
+// 	background-image: url("https://picsum.photos/1920/980");
+// 	background-size: cover;
+// 	background-repeat: no-repeat;
+	min-height: 100vh;
+}
+
 // html.dark {
 // 	.el-header,
 // 	.hxb-menu {

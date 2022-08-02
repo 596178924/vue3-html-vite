@@ -23,6 +23,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "remixicon": "^2.5.0",
+    "scrollreveal": "^4.0.9",
     "vue": "^3.2.37",
     "vue-i18n": "^9.1.10",
     "vue-router": "^4.0.16",

@@ -5,6 +5,7 @@ import 'remixicon/fonts/remixicon.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import "@/styles/index.css"
 import "@/styles/index.scss"
+import '@/styles/animate.css';
 import "@/mocks"
 
 
