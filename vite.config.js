@@ -2,9 +2,9 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy'
 // import viteCompression from "vite-plugin-compression"
-import ElementPlus from 'unplugin-element-plus/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import ElementPlus from 'unplugin-element-plus/vite'
+// import Components from 'unplugin-vue-components/vite'
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // import { configCompressPlugin } from './compress';
 import path from "path"
 // https://vitejs.dev/config/
@@ -13,12 +13,12 @@ import config from "./src/config"
 
 const allPlugins = [
 	vue(),
-	ElementPlus({
-		useSource: true,
-	}),
-	Components({
-		resolvers: [ElementPlusResolver()]
-	}),
+	// ElementPlus({
+	// 	useSource: true,
+	// }),
+	// Components({
+		// resolvers: [ElementPlusResolver()]
+	// }),
 	legacy({
 		targets: ['defaults', 'not IE 11']
 	})

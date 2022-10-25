@@ -30,3 +30,8 @@ const handler = computed({
 	set: () => triggerDrawerCollapse(),
 });
 </script>
+<style lang="scss" scoped>
+.hxb-menu-drawer {
+	--el-dialog-padding-primary: 0;
+}
+</style>

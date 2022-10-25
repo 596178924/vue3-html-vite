@@ -13,7 +13,7 @@ import { _debounceFn } from "@/utils/tools";
 import Button from "./Button";
 import Switch from "./Switch";
 
-import { useDark } from "@vueuse/core";
+import { useDark,useToggle } from "@vueuse/core";
 import { computed } from "vue-demi";
 
 import { useThemeStore } from "@/store/theme";
@@ -42,11 +42,12 @@ const isDark = useDark({
 	valueDark: "dark",
 	valueLight: "light",
 });
-
+const toggleDark = useToggle(isDark)
 triggerThemeMode(isDark.value);
 const debounTriggerThemeMode = _debounceFn((v) => {
 	console.log("节流:isDark:", v);
-	isDark.value = v;
+	toggleDark()
+	// .value = v;
 	triggerThemeMode(v);
 });
 

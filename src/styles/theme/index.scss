@@ -1,11 +1,14 @@
-@import "./dark.scss";
-@import "./light.scss";
-@import "./element/plus.scss";
-// @import "./modules/theme.red.module.scss";
-// @import "./modules/theme.green.module.scss";
-// @import "./modules/theme.yellow.module.scss";
-
-
-// .el-select-dropdown__item.selected {
-//     color: var(--el-color-primary);
-// }
+html[color-scheme="dark"],
+html[perfers-color-scheme="dark"],
+html.dark {
+	color-scheme: dark;
+	--w-e-textarea-bg-color: #333;
+	--w-e-textarea-color: #fff;
+	--w-e-toolbar-bg-color: #333;
+	--w-e-toolbar-color: #fff;
+}
+html[color-scheme="light"],
+html[perfers-color-scheme="light"]
+html.light  {
+	color-scheme: light;
+}

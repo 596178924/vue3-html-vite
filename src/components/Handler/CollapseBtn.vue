@@ -22,6 +22,5 @@ const collapse = computed(
 function trigger() {
 	console.log("切换");
 	screenWidth.value > 768 ? triggerCollapse() : triggerDrawerCollapse();
-	// triggerCollapse()
 }
 </script>

@@ -245,3 +245,14 @@ export const _throttleFn = (fn, wait = 300) => throttle(
 		trailing: true,
 	}
 )
+export function jumpToAnchor(anchorId) {
+	const dom = document.querySelector(`#${anchorId}`);
+	console.log('jumpToAnchor dom',dom);
+	if (dom) {
+		dom.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+			inline: "nearest",
+		});
+	}
+}

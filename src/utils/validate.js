@@ -1,4 +1,13 @@
 /**
+ * @description 获取类型
+ * @param obj
+ * @returns {string}
+ */
+function lowerTypeOf(obj) {
+    return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+}
+
+/**
  * @description 判读是否为外链
  * @param path
  * @returns {boolean}
@@ -103,7 +112,7 @@ export function isString(value) {
  */
 export function isArray(arg) {
     if (typeof Array.isArray === 'undefined') {
-        return Object.prototype.toString.call(arg) === '[object Array]'
+        return validateType(arg) === '[object Array]'
     }
     return Array.isArray(arg)
 }
@@ -209,18 +218,12 @@ export function isJson(value) {
     return false
 }
 
-/**
- * isSever最终校验
- */
-// ;(() => {
-//     const dev = process['env']['NODE_' + 'ENV'] === 'dev' + 'elop' + 'ment'
-//     const key = process['env']['VUE_' + 'APP_' + 'SEC' + 'RET_' + 'KEY']
-//     const hostname = window.location.hostname
-//     const local = '127.' + '0.' + '0.' + '1'
-//     const server = hostname !== 'local' + 'host' || hostname !== local
-
-//     if (!dev && server) {
-//         if (key.substring(key.length - 2) !== '=' + '=')
-//             localStorage.setItem('theme', '{"lay' + 'out","nu' + 'll"}')
-//     }
-// })()
+export function validateType(someThing) {
+    return Object.prototype.toString.call(someThing);
+}
+export function isFunction(arg) {
+    return ['[object Function]', '[object AsyncFunction]'].includes(validateType(arg))
+}
+export function isObject(arg) {
+    return validateType(arg) === '[object Object]'
+}

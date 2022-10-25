@@ -15,15 +15,19 @@
 					:value="item"
 				/>
 			</el-select>
-			<el-row :gutter="10" class="mt-4">
+			<el-row class="mt-4">
 				<el-col
 					:span="4"
 					v-for="layoutItem in layouts"
 					:key="layoutItem.type"
 					class="mb-4"
 				>
-					<el-button type="primary" circle @click="updateLayoutType(layoutItem.type)">
-						<i :class="layoutItem.icon" ></i>
+					<el-button
+						type="primary"
+						circle
+						@click="updateLayoutType(layoutItem.type)"
+					>
+						<i :class="layoutItem.icon"></i>
 					</el-button>
 				</el-col>
 			</el-row>
@@ -38,13 +42,18 @@
 			<p>
 				当前主题颜色: <span class="theme-color">{{ themeColor }}</span>
 			</p>
-			<el-select v-model="currentThemeColor" placeholder="Select">
+			<el-color-picker
+				v-model="currentThemeColor"
+				color-format="hex"
+				:predefine="ThemeColors"
+			/>
+			<!-- <el-select v-model="currentThemeColor" placeholder="Select">
 				<el-option
 					v-for="item in ThemeColors"
 					:key="item"
 					:value="item"
 				/>
-			</el-select>
+			</el-select> -->
 			<p>当前表头页签类型: {{ themeTabType }}</p>
 			<el-select v-model="currentThemeTabType" placeholder="Select">
 				<el-option
@@ -110,6 +119,7 @@ const currentThemeTabType = computed({
 });
 
 //  ['horizontal', 'vertical', 'column', 'comprehensive', 'common']
+
 const layouts = [
 	{
 		icon: "ri-layout-row-line",
